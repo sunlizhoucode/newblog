@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a class="title" href="#">我的个人博客|技术博客</a>
+            <ul class="menu">
+                <li>
+                    <a href="./index.html">首页</a>
+                </li>
+                <li>
+                    <a href="./sitemap.html">地图</a>
+                </li>
+                <li>
+                    <a href="./about.html">关于</a>
+                </li>
+                <li>
+                    <a href="./guestbook.html">留言</a>
+                </li>
+            </ul>
+            <div class="search_bar">
+                <input type="text" placeholder="输入关键词查找">
+                <button>搜索</button>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="content_left">
+            <div class="every_day" id="every_day">
+                <span>每日一句</span>
+                <p v-html="getContent"></p>
+
+            </div>
+            <div class="article_list" id="article_list">
+                <div class="article" v-for="article in article_list">
+                    <a class="article_title" :href="article.link" >{{article.title}}</a>
+                    <p class="article_content">
+                        {{article.content}}
+                    </p>
+                    <div class="article_foot">{{article.date}} |  浏览({{article.views}}) | {{article.tags}}</div>
+                </div>
+                <div class="page_tool">
+                    <ul>
+                        <li v-for="pageNum in pageNumList" @click="jumpTo(pageNum.page)" :class="{now_page:(pageNum.text == page)}">{{pageNum.text}}</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="content_right">
+            <div class="right_moudle" id="random_tags">
+                <div>随机标签云</div>
+                <a  v-for="tag in tags" v-bind:style="{color:randomColor(),fontSize:randomSize()}" :href="tag.link">{{tag.text}}</a>
+            </div>
+            <div class="right_moudle" id="new_hot">
+                <div>最近热门</div>
+                <ul>
+                    <li v-for="hot in hotList"><a :href="hot.link">{{hot.title}}</a></li>
+
+                </ul>
+            </div>
+            <div class="right_moudle" id="new_comments">
+                <div>最新评论</div>
+                <ul>
+                    <li v-for="comment in commentList">
+                        <div>
+                            <span>{{comment.name}}</span>
+                            <span class="pull_right">[{{comment.date}}]</span>
+                        </div>
+                        <p>{{comment.comment}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_moudleo">
+                <div>链接</div>
+                <span><a href="#">知乎</a></span><span><a href="#">知乎</a></span>
+                <span><a href="#">简书</a></span><span><a href="#">知乎</a></span>
+                <span><a href="#">有道云词典</a></span><span><a href="#">知乎</a></span>
+                <span><a href="#">扇贝单词</a></span><span><a href="#">知乎</a></span>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <ul>
+            <li>php</li>
+            <li>java</li>
+            <li>python</li>
+            <li>javascript</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+            <li>php</li>
+        </ul>
+        <p>Copyright © 2010-2019 个人博客 falalalalalalalalala</p>
+    </footer>
+    <script src="./js/base.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
